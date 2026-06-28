@@ -1,5 +1,5 @@
 {
-  "nid": 51,
+  "nid": 52,
   "cats": [
     {
       "id": "mob",
@@ -19,6 +19,14 @@
           "note": "Cosmopolitan",
           "price": 269,
           "link": "https://www.babyone.de/tragewannen/nuna/demi-next-wanne-cosmopolitan/2000585610487.html",
+          "chk": false
+        },
+        {
+          "id": 51,
+          "name": "Badewanne + Wickelunterlage",
+          "note": "",
+          "price": 190,
+          "link": "https://twistshake.com/de/p/luxury-changing-mat-mocha",
           "chk": false
         }
       ]
