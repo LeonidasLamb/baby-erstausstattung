@@ -1,5 +1,5 @@
 {
-  "nid": 52,
+  "nid": 53,
   "cats": [
     {
       "id": "mob",
@@ -85,6 +85,20 @@
           "note": "",
           "price": 190,
           "link": "https://twistshake.com/de/p/luxury-changing-mat-mocha",
+          "chk": false
+        }
+      ]
+    },
+    {
+      "id": "c52",
+      "name": "Equipment",
+      "items": [
+        {
+          "id": 52,
+          "name": "Sterilisator & Flaschenreiniger",
+          "note": "",
+          "price": 369,
+          "link": "https://de.momcozy.com/products/momcozy-kleanpal-pro-baby-bottle-washer?_pos=9&_sid=d595e4afe&_ss=r",
           "chk": false
         }
       ]
