@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Baby Erstausstattung — Merkliste</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --c0:#FDFAF5;--c1:#F7F1E8;--c2:#EDE3D2;--c3:#D9C8AE;--c4:#C4A97A;
+  --gold:#B8924A;--gold-l:#E8D5A8;--gold-d:#7A5E28;--gold-text:#6B4F1E;
+  --ink:#1C1208;--ink2:#4A3420;--ink3:#8A6E50;--ink4:#B09070;
+  --line:#E8DFD0;--line2:#D4C8B4;
+}
+html,body{background:var(--c0);min-height:100vh}
+body{font-family:'Georgia',serif;color:var(--ink);display:flex;justify-content:center;padding:2rem 1rem}
+.wrap{width:100%;max-width:720px}
+
+.hdr{padding:2.5rem 2rem 1.75rem;border-bottom:1px solid var(--line)}
+.hdr-eyebrow{font-family:sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+.hdr h1{font-size:28px;font-weight:400;letter-spacing:.04em;color:var(--ink);line-height:1.2}
+.hdr-meta{font-family:sans-serif;font-size:12px;color:var(--ink4);margin-top:.4rem;letter-spacing:.04em}
+.gold-ornament{display:flex;align-items:center;gap:.75rem;margin-top:1.25rem}
+.gold-ornament::before,.gold-ornament::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold))}
+.gold-ornament::after{background:linear-gradient(to left,transparent,var(--gold))}
+.gold-diamond{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);flex-shrink:0}
+
+.progress-wrap{padding:1.25rem 2rem;border-bottom:1px solid var(--line);background:var(--c1)}
+.progress-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem}
+.progress-label{font-family:sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+.progress-frac{font-family:sans-serif;font-size:12px;color:var(--gold-text);font-weight:400}
+.progress-track{height:2px;background:var(--c2);border-radius:1px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(to right,var(--gold-l),var(--gold));border-radius:1px;transition:width .4s ease}
+
+.pills{display:flex;gap:.5rem;padding:.75rem 2rem;border-bottom:1px solid var(--line);flex-wrap:wrap;background:var(--c0)}
+.pill{font-family:sans-serif;font-size:11px;color:var(--ink3);letter-spacing:.06em;padding:.3rem .75rem;border:1px solid var(--line2);border-radius:20px;background:var(--c0)}
+.pill b{color:var(--gold-text);font-weight:400}
+
+.cat{border-bottom:1px solid var(--line)}
+.cat-hdr{display:flex;align-items:center;gap:.6rem;padding:1rem 2rem .75rem;cursor:pointer;user-select:none}
+.cat-hdr:hover{background:var(--c1)}
+.cat-name{font-family:sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);flex:1}
+.cat-prog{font-family:sans-serif;font-size:10px;color:var(--gold);letter-spacing:.06em}
+.cat-arr{font-size:12px;color:var(--ink4);transition:transform .2s;display:inline-block}
+.cat-arr.open{transform:rotate(90deg)}
+
+.items{padding:0 2rem .75rem}
+.item-row{display:grid;grid-template-columns:24px 1fr 110px 30px 30px;gap:0 .75rem;align-items:center;padding:.6rem .5rem;border-radius:6px;transition:background .15s;position:relative}
+.item-row:hover{background:var(--c1)}
+.item-row.checked{opacity:.5}
+.item-row.checked .iname{text-decoration:line-through;color:var(--ink3)}
+
+.chk{width:18px;height:18px;border:1px solid var(--line2);border-radius:3px;cursor:pointer;display:flex;align-items:center;justify-content:center;background:white;flex-shrink:0;transition:all .15s}
+.chk.on{background:var(--gold);border-color:var(--gold-d)}
+.chk.on::after{content:'✓';color:white;font-size:10px;font-family:sans-serif;line-height:1}
+
+.iinfo{min-width:0}
+.iname{font-size:14px;color:var(--ink);letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;cursor:text;padding:1px 4px;border-radius:3px;border:1px solid transparent;transition:border-color .15s}
+.iname:hover{border-color:var(--line2)}
+.iname:focus{outline:none;border-color:var(--gold);background:white;overflow:visible;text-overflow:clip}
+.inote{font-family:sans-serif;font-size:10px;color:var(--ink4);letter-spacing:.06em;margin-top:2px;cursor:text;padding:1px 4px;border-radius:3px;border:1px solid transparent;transition:border-color .15s;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.inote:hover{border-color:var(--line2)}
+.inote:focus{outline:none;border-color:var(--gold);background:white;overflow:visible;text-overflow:clip}
+.inote:empty::before{content:'Notiz hinzufügen…';color:var(--ink4);opacity:.5}
+
+.iprice{font-family:sans-serif;font-size:12px;color:var(--gold-text);text-align:right;cursor:text;padding:2px 5px;border-radius:3px;border:1px solid transparent;transition:border-color .15s;white-space:nowrap}
+.iprice:hover{border-color:var(--line2)}
+.iprice:focus{outline:none;border-color:var(--gold);background:white;color:var(--ink)}
+.iprice:empty::before{content:'— €';color:var(--ink4);opacity:.6}
+
+.ilink{color:var(--ink4);font-size:16px;text-decoration:none;display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:4px;transition:all .15s;border:1px solid transparent}
+.ilink:hover{color:var(--gold);border-color:var(--line2);background:var(--c1)}
+.idel{color:var(--line2);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:4px;transition:all .15s;border:1px solid transparent;font-family:sans-serif;line-height:1;background:none}
+.idel:hover{color:#b44;border-color:#f0dada;background:#fdf5f5}
+
+.col-hdr{display:grid;grid-template-columns:24px 1fr 110px 30px 30px;gap:0 .75rem;padding:.3rem .5rem;margin:0 0 .2rem}
+.col-h{font-family:sans-serif;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink4)}
+.col-h.r{text-align:right}
+
+.add-wrap{padding:1.25rem 2rem 1.75rem;background:var(--c1);border-top:1px solid var(--line)}
+.add-btn{display:flex;align-items:center;gap:.5rem;font-family:sans-serif;font-size:12px;letter-spacing:.08em;color:var(--ink3);background:none;border:1px dashed var(--line2);border-radius:6px;padding:.6rem 1rem;cursor:pointer;width:100%;transition:all .15s}
+.add-btn:hover{border-color:var(--gold);color:var(--gold-text);background:var(--c0)}
+.add-form{background:var(--c0);border:1px solid var(--line2);border-radius:8px;padding:1.25rem;margin-top:.75rem;display:none}
+.add-form.open{display:block}
+.frow{display:grid;gap:.6rem;margin-bottom:.6rem}
+.frow.g2{grid-template-columns:1fr 1fr}
+.frow.g3{grid-template-columns:2fr 1fr 1.5fr}
+.fg{display:flex;flex-direction:column;gap:4px}
+.fl{font-family:sans-serif;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink4)}
+.fi{border:1px solid var(--line2);border-radius:5px;padding:.4rem .65rem;font-size:13px;color:var(--ink);font-family:'Georgia',serif;outline:none;background:white;transition:border-color .15s}
+.fi:focus{border-color:var(--gold)}
+.fs{border:1px solid var(--line2);border-radius:5px;padding:.4rem .65rem;font-size:12px;color:var(--ink);font-family:sans-serif;outline:none;background:white}
+.fs:focus{border-color:var(--gold)}
+.factions{display:flex;gap:.5rem;justify-content:flex-end;margin-top:.75rem}
+.fbtn{padding:.45rem 1.2rem;border-radius:5px;font-size:11px;letter-spacing:.08em;cursor:pointer;font-family:sans-serif;border:none;transition:all .15s}
+.fbtn-p{background:var(--gold);color:white}
+.fbtn-p:hover{background:var(--gold-d)}
+.fbtn-s{background:none;border:1px solid var(--line2);color:var(--ink3)}
+.fbtn-s:hover{background:var(--c2)}
+
+.total{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2rem;background:var(--c1);border-top:1px solid var(--line)}
+.total-l{font-family:sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3)}
+.total-r{font-size:22px;color:var(--gold-text);letter-spacing:.03em}
+.total-sub{font-family:sans-serif;font-size:10px;color:var(--ink4);margin-top:3px;letter-spacing:.06em}
+
+.footer{text-align:center;padding:1.5rem 2rem;font-family:sans-serif;font-size:10px;color:var(--ink4);letter-spacing:.1em;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+let nid = 50;
+const D = {
+  cats:[
+    {id:'mob',name:'Mobilität & Transport',items:[
+      {id:1,name:'Nuna DEMI next Kinderwagen',note:'Cosmopolitan',price:1499,link:'https://www.babyone.de/kombi-kinderwagen/nuna/demi-next-cosmopolitan/2000585610388.html',chk:false},
+      {id:2,name:'Nuna DEMI next Sportsitz',note:'Cosmopolitan',price:299,link:'https://www.babyone.de/kombi-kinderwagen/nuna/demi-next-cosmopolitan/2000585610388.html',chk:false},
+      {id:3,name:'Nuna DEMI next Kinderwanne',note:'Cosmopolitan',price:249,link:'https://www.babyone.de/tragewannen/nuna/demi-next-wanne-cosmopolitan/2000585610487.html',chk:false},
+    ]},
+    {id:'auto',name:'Sicherheit & Auto',items:[
+      {id:4,name:'Nuna PIPA next Babyschale',note:'Chestnut',price:429,link:'https://www.babyone.de/babyschalen/nuna/pipa-next-chestnut/2000588681507.html',chk:false},
+      {id:5,name:'Nuna BASE next',note:'Isofix-Base',price:299,link:'https://www.babyone.de/kindersitz-basis-stationen/nuna/base-next/2000580370706.html',chk:false},
+    ]},
+    {id:'sleep',name:'Schlafen & Entspannen',items:[
+      {id:6,name:'Nuna LEAF grow Wippe',note:'Cloud',price:369,link:'https://www.babyone.de/wippen/nuna/wippe-leaf-grow-cloud/2000586955716.html',chk:false},
+      {id:7,name:'Kunu All-in-One Babybett',note:'Beistellbett',price:0,link:'https://kunu-store.de/products/babybeistellbett',chk:false},
+    ]},
+  ]
+};
+
+let collapsed = {};
+let showAdd = false;
+
+function allItems(){ return D.cats.flatMap(c => c.items); }
+function parseP(s){ const n=parseFloat(String(s).replace(',','.').replace(/[^\d.]/g,'')); return isNaN(n)?0:n; }
+function fmtP(p){ if(!p||p===0) return ''; return p.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+' €'; }
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function render(){
+  const items=allItems(), done=items.filter(i=>i.chk).length, total=items.length;
+  const sum=items.filter(i=>i.price>0).reduce((s,i)=>s+i.price,0);
+  const pct=total?Math.round(done/total*100):0;
+
+  let html=`
+<div class="hdr">
+  <div class="hdr-eyebrow">Unsere Merkliste</div>
+  <h1>Baby Erstausstattung</h1>
+  <div class="hdr-meta">Alle Angaben jederzeit bearbeitbar · Klick auf Namen, Notiz oder Preis zum Bearbeiten</div>
+  <div class="gold-ornament"><div class="gold-diamond"></div></div>
+</div>
+<div class="progress-wrap">
+  <div class="progress-row">
+    <span class="progress-label">Fortschritt</span>
+    <span class="progress-frac" id="pfrac">${done} von ${total} besorgt</span>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="pfill" style="width:${pct}%"></div></div>
+</div>
+<div class="pills" id="pills">
+  <div class="pill"><b id="ps-total">${total}</b> Artikel</div>
+  <div class="pill"><b id="ps-done">${done}</b> erledigt</div>
+  <div class="pill"><b id="ps-open">${total-done}</b> noch offen</div>
+  <div class="pill">Gesamt <b id="ps-sum">${fmtP(sum)||'—'}</b></div>
+</div>`;
+
+  D.cats.forEach(cat => {
+    const cdone=cat.items.filter(i=>i.chk).length;
+    const isOpen=!collapsed[cat.id];
+    html+=`<div class="cat">
+<div class="cat-hdr" onclick="toggleCat('${cat.id}')">
+  <span class="cat-name">${esc(cat.name)}</span>
+  <span class="cat-prog">${cdone}/${cat.items.length}</span>
+  <span class="cat-arr ${isOpen?'open':''}"><i class="ti ti-chevron-right"></i></span>
+</div>`;
+    if(isOpen){
+      html+=`<div class="items">
+<div class="col-hdr">
+  <span></span><span class="col-h">Artikel</span><span class="col-h r">Preis</span><span></span><span></span>
+</div>`;
+      cat.items.forEach(item=>{
+        const p=fmtP(item.price);
+        html+=`<div class="item-row${item.chk?' checked':''}" id="ir${item.id}">
+<div class="chk${item.chk?' on':''}" onclick="toggleChk(${item.id})" role="checkbox" aria-checked="${item.chk}" tabindex="0" onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();toggleChk(${item.id})}"></div>
+<div class="iinfo">
+  <span class="iname" contenteditable="true" data-id="${item.id}" data-field="name" onblur="saveField(this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">${esc(item.name)}</span>
+  <span class="inote" contenteditable="true" data-id="${item.id}" data-field="note" onblur="saveField(this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">${esc(item.note||'')}</span>
+</div>
+<span class="iprice" contenteditable="true" data-id="${item.id}" data-field="price" onblur="savePriceField(this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" title="Klicken zum Bearbeiten">${p}</span>
+${item.link?`<a class="ilink" href="${esc(item.link)}" target="_blank" rel="noopener" title="Produkt ansehen"><i class="ti ti-external-link"></i></a>`:`<span></span>`}
+<button class="idel" onclick="delItem(${item.id},'${cat.id}')" title="Entfernen" aria-label="Entfernen">×</button>
+</div>`;
+      });
+      html+=`</div>`;
+    }
+    html+=`</div>`;
+  });
+
+  html+=`<div class="add-wrap">
+<button class="add-btn" onclick="toggleAdd()"><i class="ti ti-plus" style="font-size:15px"></i> Artikel hinzufügen</button>
+<div class="add-form${showAdd?' open':''}" id="addForm">
+  <div class="frow g3">
+    <div class="fg"><label class="fl">Produktname</label><input class="fi" id="nn" placeholder="z.B. Wickelkommode"/></div>
+    <div class="fg"><label class="fl">Preis (€)</label><input class="fi" id="np" placeholder="0,00" style="font-family:sans-serif"/></div>
+    <div class="fg"><label class="fl">Kategorie</label><select class="fs" id="nc">${D.cats.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}<option value="__new__">+ Neue Kategorie…</option></select></div>
+  </div>
+  <div class="frow g2">
+    <div class="fg"><label class="fl">Link (optional)</label><input class="fi" id="nl" placeholder="https://…" style="font-family:sans-serif"/></div>
+    <div class="fg"><label class="fl">Notiz / Farbe</label><input class="fi" id="nno" placeholder="Farbe, Modell…"/></div>
+  </div>
+  <div class="factions">
+    <button class="fbtn fbtn-s" onclick="toggleAdd()">Abbrechen</button>
+    <button class="fbtn fbtn-p" onclick="addItem()">Hinzufügen</button>
+  </div>
+</div>
+</div>
+<div class="total">
+  <div>
+    <div class="total-l">Geschätzter Gesamtbetrag</div>
+    <div class="total-sub">Nur Artikel mit eingetragenem Preis</div>
+  </div>
+  <div class="total-r" id="total-r">${fmtP(sum)||'—'}</div>
+</div>
+<div class="footer">Baby Erstausstattung · ${new Date().getFullYear()}</div>`;
+
+  document.getElementById('app').innerHTML=html;
+}
+
+function toggleChk(id){
+  const i=allItems().find(x=>x.id===id);
+  if(i){ i.chk=!i.chk; render(); }
+}
+
+function toggleCat(id){ collapsed[id]=!collapsed[id]; render(); }
+
+function delItem(id,catId){
+  const c=D.cats.find(x=>x.id===catId);
+  if(c){ c.items=c.items.filter(i=>i.id!==id); render(); }
+}
+
+function saveField(el){
+  const id=+el.dataset.id, field=el.dataset.field;
+  const item=allItems().find(i=>i.id===id);
+  if(item) item[field]=el.innerText.trim();
+  updateStats();
+}
+
+function savePriceField(el){
+  const id=+el.dataset.id;
+  const item=allItems().find(i=>i.id===id);
+  if(item){ item.price=parseP(el.innerText); el.innerText=fmtP(item.price); }
+  updateStats();
+}
+
+function updateStats(){
+  const items=allItems(), done=items.filter(i=>i.chk).length, total=items.length;
+  const sum=items.filter(i=>i.price>0).reduce((s,i)=>s+i.price,0);
+  const pct=total?Math.round(done/total*100):0;
+  const pf=document.getElementById('pfill'); if(pf) pf.style.width=pct+'%';
+  const pr=document.getElementById('pfrac'); if(pr) pr.textContent=`${done} von ${total} besorgt`;
+  const s=id=>document.getElementById(id);
+  if(s('ps-total')) s('ps-total').textContent=total;
+  if(s('ps-done'))  s('ps-done').textContent=done;
+  if(s('ps-open'))  s('ps-open').textContent=total-done;
+  if(s('ps-sum'))   s('ps-sum').textContent=fmtP(sum)||'—';
+  if(s('total-r'))  s('total-r').textContent=fmtP(sum)||'—';
+}
+
+function toggleAdd(){
+  showAdd=!showAdd;
+  render();
+  if(showAdd) setTimeout(()=>document.getElementById('nn')?.focus(),50);
+}
+
+function addItem(){
+  const name=(document.getElementById('nn')?.value||'').trim();
+  if(!name){ document.getElementById('nn')?.focus(); return; }
+  const price=parseP(document.getElementById('np')?.value||'');
+  const catId=document.getElementById('nc')?.value;
+  const link=(document.getElementById('nl')?.value||'').trim();
+  const note=(document.getElementById('nno')?.value||'').trim();
+  if(catId==='__new__'){
+    const cn=prompt('Name der neuen Kategorie:');
+    if(!cn) return;
+    D.cats.push({id:'c'+nid,name:cn,items:[{id:nid++,name,note,price,link,chk:false}]});
+  } else {
+    const cat=D.cats.find(c=>c.id===catId);
+    if(cat) cat.items.push({id:nid++,name,note,price,link,chk:false});
+  }
+  showAdd=false;
+  render();
+}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter' && document.activeElement?.classList.contains('fi')){
+    const ids=['nn','np','nl','nno'];
+    const cur=ids.indexOf(document.activeElement.id);
+    if(cur>=0 && cur<ids.length-1) document.getElementById(ids[cur+1])?.focus();
+    else if(cur===ids.length-1) addItem();
+  }
+});
+
+render();
+</script>
+</body>
+</html>
