@@ -1,5 +1,5 @@
 {
-  "nid": 60,
+  "nid": 61,
   "cats": [
     {
       "id": "mob",
@@ -139,6 +139,14 @@
           "note": "SCF358/00 · schonendes Wasserbad, ~3 Min",
           "price": 43.99,
           "link": "https://geizhals.de/philips-avent-scf358-00-flaschenwaermer-a2284820.html",
+          "chk": false
+        },
+        {
+          "id": 60,
+          "name": "Babyphone + Kamera",
+          "note": "",
+          "price": 128,
+          "link": "https://www.amazon.de/dp/B0FF93J8NL?linkCode=xm2&smid=AZ6JQZ3Z9GGV9&creative=22662&creativeASIN=B0FF93J8NL&tag=geizhals10-21&language=de_DE&ascsubtag=mp_de&th=1",
           "chk": false
         }
       ]
