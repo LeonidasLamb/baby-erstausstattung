@@ -100,13 +100,7 @@
           "price": 369,
           "link": "https://de.momcozy.com/products/momcozy-kleanpal-pro-baby-bottle-washer?_pos=9&_sid=d595e4afe&_ss=r",
           "chk": false
-        }
-      ]
-    },
-    {
-      "id": "c53",
-      "name": "Tragen & Unterwegs",
-      "items": [
+        },
         {
           "id": 53,
           "name": "Ergobaby Omni Breeze",
@@ -116,6 +110,11 @@
           "chk": false
         }
       ]
+    },
+    {
+      "id": "c53",
+      "name": "Tragen & Unterwegs",
+      "items": []
     }
   ]
 }
