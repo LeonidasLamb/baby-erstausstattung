@@ -1,5 +1,5 @@
 {
-  "nid": 55,
+  "nid": 56,
   "cats": [
     {
       "id": "mob",
@@ -107,6 +107,14 @@
           "note": "",
           "price": 369,
           "link": "https://de.momcozy.com/products/momcozy-kleanpal-pro-baby-bottle-washer?_pos=9&_sid=d595e4afe&_ss=r",
+          "chk": false
+        },
+        {
+          "id": 55,
+          "name": "Abpumpen Double",
+          "note": "",
+          "price": 420,
+          "link": "https://www.coolblue.de/produkt/916591/elvie-pump-double.html?cmt=c_p%2Cr_geizhals.de&utm_source=geizhals.de&utm_medium=pricecomparison&utm_content=6703",
           "chk": false
         }
       ]
