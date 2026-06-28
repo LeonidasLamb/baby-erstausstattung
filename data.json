@@ -20,14 +20,6 @@
           "price": 269,
           "link": "https://www.babyone.de/tragewannen/nuna/demi-next-wanne-cosmopolitan/2000585610487.html",
           "chk": false
-        },
-        {
-          "id": 51,
-          "name": "Badewanne + Wickelunterlage",
-          "note": "",
-          "price": 190,
-          "link": "https://twistshake.com/de/p/luxury-changing-mat-mocha",
-          "chk": false
         }
       ]
     },
@@ -85,6 +77,14 @@
           "note": "",
           "price": 35,
           "link": "https://www.amazon.de/dp/B073168GYF/ref=cm_sw_r_as_gl_api_gl_i_4G4H6Y39H8T356HF33W3?linkCode=ml1&tag=lanahimoud-21&linkId=966339798e61e930750c802f3509a91a&th=1",
+          "chk": false
+        },
+        {
+          "id": 51,
+          "name": "Badewanne + Wickelunterlage",
+          "note": "",
+          "price": 190,
+          "link": "https://twistshake.com/de/p/luxury-changing-mat-mocha",
           "chk": false
         }
       ]
