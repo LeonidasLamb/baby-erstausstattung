@@ -8,9 +8,9 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --c0:#FDFAF5;--c1:#F7F1E8;--c2:#EDE3D2;--c3:#D9C8AE;--c4:#C4A97A;
+  --c0:#FDFAF5;--c1:#F7F1E8;--c2:#EDE3D2;--c3:#D9C8AE;
   --gold:#B8924A;--gold-l:#E8D5A8;--gold-d:#7A5E28;--gold-text:#6B4F1E;
-  --ink:#1C1208;--ink2:#4A3420;--ink3:#8A6E50;--ink4:#B09070;
+  --ink:#1C1208;--ink3:#8A6E50;--ink4:#B09070;
   --line:#E8DFD0;--line2:#D4C8B4;
 }
 html,body{background:var(--c0);min-height:100vh}
@@ -29,7 +29,7 @@ body{font-family:'Georgia',serif;color:var(--ink);display:flex;justify-content:c
 .progress-wrap{padding:1.25rem 2rem;border-bottom:1px solid var(--line);background:var(--c1)}
 .progress-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem}
 .progress-label{font-family:sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
-.progress-frac{font-family:sans-serif;font-size:12px;color:var(--gold-text);font-weight:400}
+.progress-frac{font-family:sans-serif;font-size:12px;color:var(--gold-text)}
 .progress-track{height:2px;background:var(--c2);border-radius:1px;overflow:hidden}
 .progress-fill{height:100%;background:linear-gradient(to right,var(--gold-l),var(--gold));border-radius:1px;transition:width .4s ease}
 
@@ -46,7 +46,7 @@ body{font-family:'Georgia',serif;color:var(--ink);display:flex;justify-content:c
 .cat-arr.open{transform:rotate(90deg)}
 
 .items{padding:0 2rem .75rem}
-.item-row{display:grid;grid-template-columns:24px 1fr 110px 30px 30px;gap:0 .75rem;align-items:center;padding:.6rem .5rem;border-radius:6px;transition:background .15s;position:relative}
+.item-row{display:grid;grid-template-columns:24px 1fr 120px 30px 30px;gap:0 .75rem;align-items:center;padding:.6rem .5rem;border-radius:6px;transition:background .15s}
 .item-row:hover{background:var(--c1)}
 .item-row.checked{opacity:.5}
 .item-row.checked .iname{text-decoration:line-through;color:var(--ink3)}
@@ -64,17 +64,22 @@ body{font-family:'Georgia',serif;color:var(--ink);display:flex;justify-content:c
 .inote:focus{outline:none;border-color:var(--gold);background:white;overflow:visible;text-overflow:clip}
 .inote:empty::before{content:'Notiz hinzufügen…';color:var(--ink4);opacity:.5}
 
-.iprice{font-family:sans-serif;font-size:12px;color:var(--gold-text);text-align:right;cursor:text;padding:2px 5px;border-radius:3px;border:1px solid transparent;transition:border-color .15s;white-space:nowrap}
+.price-wrap{display:flex;align-items:center;justify-content:flex-end;gap:4px}
+.iprice{font-family:sans-serif;font-size:12px;color:var(--gold-text);text-align:right;cursor:text;padding:2px 5px;border-radius:3px;border:1px solid transparent;transition:border-color .15s;white-space:nowrap;flex:1}
 .iprice:hover{border-color:var(--line2)}
 .iprice:focus{outline:none;border-color:var(--gold);background:white;color:var(--ink)}
 .iprice:empty::before{content:'— €';color:var(--ink4);opacity:.6}
+.fetch-btn{width:20px;height:20px;border:none;background:none;cursor:pointer;color:var(--ink4);font-size:14px;display:flex;align-items:center;justify-content:center;border-radius:3px;padding:0;flex-shrink:0;transition:all .15s}
+.fetch-btn:hover{color:var(--gold);background:var(--c2)}
+.fetch-btn.loading{animation:spin .8s linear infinite;pointer-events:none}
+@keyframes spin{to{transform:rotate(360deg)}}
 
 .ilink{color:var(--ink4);font-size:16px;text-decoration:none;display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:4px;transition:all .15s;border:1px solid transparent}
 .ilink:hover{color:var(--gold);border-color:var(--line2);background:var(--c1)}
 .idel{color:var(--line2);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:4px;transition:all .15s;border:1px solid transparent;font-family:sans-serif;line-height:1;background:none}
 .idel:hover{color:#b44;border-color:#f0dada;background:#fdf5f5}
 
-.col-hdr{display:grid;grid-template-columns:24px 1fr 110px 30px 30px;gap:0 .75rem;padding:.3rem .5rem;margin:0 0 .2rem}
+.col-hdr{display:grid;grid-template-columns:24px 1fr 120px 30px 30px;gap:0 .75rem;padding:.3rem .5rem;margin:0 0 .2rem}
 .col-h{font-family:sans-serif;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink4)}
 .col-h.r{text-align:right}
 
@@ -86,12 +91,25 @@ body{font-family:'Georgia',serif;color:var(--ink);display:flex;justify-content:c
 .frow{display:grid;gap:.6rem;margin-bottom:.6rem}
 .frow.g2{grid-template-columns:1fr 1fr}
 .frow.g3{grid-template-columns:2fr 1fr 1.5fr}
-.fg{display:flex;flex-direction:column;gap:4px}
+.fg{display:flex;flex-direction:column;gap:4px;position:relative}
 .fl{font-family:sans-serif;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink4)}
-.fi{border:1px solid var(--line2);border-radius:5px;padding:.4rem .65rem;font-size:13px;color:var(--ink);font-family:'Georgia',serif;outline:none;background:white;transition:border-color .15s}
+.fi{border:1px solid var(--line2);border-radius:5px;padding:.4rem .65rem;font-size:13px;color:var(--ink);font-family:'Georgia',serif;outline:none;background:white;transition:border-color .15s;width:100%}
 .fi:focus{border-color:var(--gold)}
-.fs{border:1px solid var(--line2);border-radius:5px;padding:.4rem .65rem;font-size:12px;color:var(--ink);font-family:sans-serif;outline:none;background:white}
+.fs{border:1px solid var(--line2);border-radius:5px;padding:.4rem .65rem;font-size:12px;color:var(--ink);font-family:sans-serif;outline:none;background:white;width:100%}
 .fs:focus{border-color:var(--gold)}
+
+/* Link field with fetch indicator */
+.link-field-wrap{position:relative}
+.link-field-wrap .fi{padding-right:2rem}
+.link-fetch-indicator{position:absolute;right:.5rem;top:50%;transform:translateY(-50%);font-size:14px;color:var(--ink4);pointer-events:none}
+.link-fetch-indicator.loading{animation:spin .8s linear infinite;color:var(--gold)}
+.link-fetch-indicator.ok{color:#5a8a3a}
+.link-fetch-indicator.err{color:#b44}
+
+.fetch-hint{font-family:sans-serif;font-size:10px;color:var(--ink4);margin-top:3px;letter-spacing:.04em;min-height:14px}
+.fetch-hint.ok{color:#5a8a3a}
+.fetch-hint.err{color:#b44}
+
 .factions{display:flex;gap:.5rem;justify-content:flex-end;margin-top:.75rem}
 .fbtn{padding:.45rem 1.2rem;border-radius:5px;font-size:11px;letter-spacing:.08em;cursor:pointer;font-family:sans-serif;border:none;transition:all .15s}
 .fbtn-p{background:var(--gold);color:white}
@@ -103,12 +121,16 @@ body{font-family:'Georgia',serif;color:var(--ink);display:flex;justify-content:c
 .total-l{font-family:sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3)}
 .total-r{font-size:22px;color:var(--gold-text);letter-spacing:.03em}
 .total-sub{font-family:sans-serif;font-size:10px;color:var(--ink4);margin-top:3px;letter-spacing:.06em}
-
 .footer{text-align:center;padding:1.5rem 2rem;font-family:sans-serif;font-size:10px;color:var(--ink4);letter-spacing:.1em;border-top:1px solid var(--line)}
+
+/* Toast */
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--ink);color:white;font-family:sans-serif;font-size:12px;letter-spacing:.06em;padding:.5rem 1.25rem;border-radius:20px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:999}
+.toast.show{opacity:1}
 </style>
 </head>
 <body>
 <div class="wrap" id="app"></div>
+<div class="toast" id="toast"></div>
 
 <script>
 let nid = 50;
@@ -130,14 +152,152 @@ const D = {
   ]
 };
 
-let collapsed = {};
-let showAdd = false;
+let collapsed={}, showAdd=false;
 
-function allItems(){ return D.cats.flatMap(c => c.items); }
+function allItems(){ return D.cats.flatMap(c=>c.items); }
 function parseP(s){ const n=parseFloat(String(s).replace(',','.').replace(/[^\d.]/g,'')); return isNaN(n)?0:n; }
 function fmtP(p){ if(!p||p===0) return ''; return p.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+' €'; }
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
+function toast(msg, dur=2500){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), dur);
+}
+
+/* ── Price fetching via CORS proxy + JSON-LD / meta parsing ── */
+async function fetchPrice(url){
+  const proxies=[
+    u=>`https://api.allorigins.win/get?url=${encodeURIComponent(u)}`,
+    u=>`https://corsproxy.io/?${encodeURIComponent(u)}`,
+  ];
+  for(const proxy of proxies){
+    try{
+      const res=await fetch(proxy(url),{signal:AbortSignal.timeout(8000)});
+      if(!res.ok) continue;
+      const data=await res.json();
+      const html=data.contents||data;
+      if(typeof html!=='string') continue;
+      const price=extractPrice(html, url);
+      if(price) return price;
+    }catch(e){ continue; }
+  }
+  return null;
+}
+
+function extractPrice(html, url){
+  /* 1. JSON-LD schema.org/Product */
+  const ldMatches=[...html.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
+  for(const m of ldMatches){
+    try{
+      const obj=JSON.parse(m[1]);
+      const objs=Array.isArray(obj)?obj:[obj];
+      for(const o of objs){
+        const items=[o,...(o['@graph']||[])];
+        for(const item of items){
+          if(!item) continue;
+          const offers=item.offers||(item['@type']==='Offer'?item:null);
+          if(!offers) continue;
+          const offerList=Array.isArray(offers)?offers:[offers];
+          for(const of_ of offerList){
+            const p=parseFloat(of_.price||of_.lowPrice||'');
+            if(p>0) return p;
+          }
+        }
+      }
+    }catch(e){}
+  }
+
+  /* 2. og:price:amount meta */
+  const ogPrice=html.match(/<meta[^>]+property=["']og:price:amount["'][^>]+content=["']([0-9.,]+)["']/i);
+  if(ogPrice){ const p=parseP(ogPrice[1]); if(p>0) return p; }
+
+  /* 3. itemprop price */
+  const itemprop=html.match(/itemprop=["']price["'][^>]+content=["']([0-9.,]+)["']/i)
+    ||html.match(/content=["']([0-9.,]+)["'][^>]+itemprop=["']price["']/i);
+  if(itemprop){ const p=parseP(itemprop[1]); if(p>0) return p; }
+
+  /* 4. data-price attribute common in DE shops */
+  const dataprice=html.match(/data-price=["']([0-9]+[.,][0-9]{2})["']/i);
+  if(dataprice){ const p=parseP(dataprice[1]); if(p>0) return p; }
+
+  /* 5. Shopify /products/*.json */
+  if(url.includes('/products/')){
+    const jsonUrl=url.split('?')[0].replace(/\/?$/, '.json');
+    return null; // async follow-up not done here; handled separately
+  }
+
+  return null;
+}
+
+async function fetchAndSetPrice(itemId, btnEl){
+  const item=allItems().find(i=>i.id===itemId);
+  if(!item||!item.link){ toast('Kein Link vorhanden'); return; }
+  if(btnEl){ btnEl.classList.add('loading'); btnEl.innerHTML='<i class="ti ti-loader-2"></i>'; }
+
+  /* Special: Shopify .json endpoint */
+  let price=null;
+  if(item.link.includes('/products/')){
+    try{
+      const jsonUrl=item.link.split('?')[0].replace(/\/?$/,'.json');
+      const proxy=`https://api.allorigins.win/get?url=${encodeURIComponent(jsonUrl)}`;
+      const res=await fetch(proxy,{signal:AbortSignal.timeout(8000)});
+      if(res.ok){
+        const d=await res.json();
+        const pd=JSON.parse(d.contents||'{}');
+        const v=pd?.product?.variants?.[0]?.price;
+        if(v) price=parseFloat(v);
+      }
+    }catch(e){}
+  }
+
+  if(!price) price=await fetchPrice(item.link);
+
+  if(btnEl){ btnEl.classList.remove('loading'); btnEl.innerHTML='<i class="ti ti-refresh"></i>'; }
+
+  if(price){
+    item.price=price;
+    toast(`Preis gefunden: ${fmtP(price)}`);
+    render();
+  } else {
+    toast('Preis nicht automatisch gefunden — bitte manuell eingeben');
+  }
+}
+
+/* ── Auto-fetch when link is pasted in add form ── */
+let fetchTimer=null;
+function onLinkInput(){
+  const url=(document.getElementById('nl')?.value||'').trim();
+  const ind=document.getElementById('link-ind');
+  const hint=document.getElementById('link-hint');
+  if(fetchTimer) clearTimeout(fetchTimer);
+  if(!url||!url.startsWith('http')){ if(ind){ind.className='link-fetch-indicator';ind.textContent='';} if(hint){hint.textContent='';hint.className='fetch-hint';} return; }
+  if(ind){ind.className='link-fetch-indicator loading';ind.innerHTML='<i class="ti ti-loader-2"></i>';}
+  if(hint){hint.textContent='Preis wird gesucht…';hint.className='fetch-hint';}
+  fetchTimer=setTimeout(async()=>{
+    let price=null;
+    const isShopify=url.includes('/products/');
+    if(isShopify){
+      try{
+        const jsonUrl=url.split('?')[0].replace(/\/?$/,'.json');
+        const proxy=`https://api.allorigins.win/get?url=${encodeURIComponent(jsonUrl)}`;
+        const res=await fetch(proxy,{signal:AbortSignal.timeout(8000)});
+        if(res.ok){ const d=await res.json(); const pd=JSON.parse(d.contents||'{}'); const v=pd?.product?.variants?.[0]?.price; if(v) price=parseFloat(v); }
+      }catch(e){}
+    }
+    if(!price) price=await fetchPrice(url);
+    if(price){
+      const np=document.getElementById('np'); if(np) np.value=price.toFixed(2).replace('.',',');
+      if(ind){ind.className='link-fetch-indicator ok';ind.innerHTML='<i class="ti ti-check"></i>';}
+      if(hint){hint.textContent=`Preis gefunden: ${fmtP(price)}`;hint.className='fetch-hint ok';}
+    } else {
+      if(ind){ind.className='link-fetch-indicator err';ind.innerHTML='<i class="ti ti-x"></i>';}
+      if(hint){hint.textContent='Nicht gefunden — bitte manuell eingeben';hint.className='fetch-hint err';}
+    }
+  }, 800);
+}
+
+/* ── Render ── */
 function render(){
   const items=allItems(), done=items.filter(i=>i.chk).length, total=items.length;
   const sum=items.filter(i=>i.price>0).reduce((s,i)=>s+i.price,0);
@@ -147,7 +307,7 @@ function render(){
 <div class="hdr">
   <div class="hdr-eyebrow">Unsere Merkliste</div>
   <h1>Baby Erstausstattung</h1>
-  <div class="hdr-meta">Alle Angaben jederzeit bearbeitbar · Klick auf Namen, Notiz oder Preis zum Bearbeiten</div>
+  <div class="hdr-meta">Alle Angaben bearbeitbar · Link einfügen → Preis wird automatisch geladen</div>
   <div class="gold-ornament"><div class="gold-diamond"></div></div>
 </div>
 <div class="progress-wrap">
@@ -157,14 +317,14 @@ function render(){
   </div>
   <div class="progress-track"><div class="progress-fill" id="pfill" style="width:${pct}%"></div></div>
 </div>
-<div class="pills" id="pills">
+<div class="pills">
   <div class="pill"><b id="ps-total">${total}</b> Artikel</div>
   <div class="pill"><b id="ps-done">${done}</b> erledigt</div>
   <div class="pill"><b id="ps-open">${total-done}</b> noch offen</div>
   <div class="pill">Gesamt <b id="ps-sum">${fmtP(sum)||'—'}</b></div>
 </div>`;
 
-  D.cats.forEach(cat => {
+  D.cats.forEach(cat=>{
     const cdone=cat.items.filter(i=>i.chk).length;
     const isOpen=!collapsed[cat.id];
     html+=`<div class="cat">
@@ -176,7 +336,7 @@ function render(){
     if(isOpen){
       html+=`<div class="items">
 <div class="col-hdr">
-  <span></span><span class="col-h">Artikel</span><span class="col-h r">Preis</span><span></span><span></span>
+  <span></span><span class="col-h">Artikel</span><span class="col-h r" style="padding-right:24px">Preis</span><span></span><span></span>
 </div>`;
       cat.items.forEach(item=>{
         const p=fmtP(item.price);
@@ -186,7 +346,10 @@ function render(){
   <span class="iname" contenteditable="true" data-id="${item.id}" data-field="name" onblur="saveField(this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">${esc(item.name)}</span>
   <span class="inote" contenteditable="true" data-id="${item.id}" data-field="note" onblur="saveField(this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">${esc(item.note||'')}</span>
 </div>
-<span class="iprice" contenteditable="true" data-id="${item.id}" data-field="price" onblur="savePriceField(this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" title="Klicken zum Bearbeiten">${p}</span>
+<div class="price-wrap">
+  <span class="iprice" contenteditable="true" data-id="${item.id}" onblur="savePriceField(this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" title="Klicken zum Bearbeiten">${p}</span>
+  ${item.link?`<button class="fetch-btn" onclick="fetchAndSetPrice(${item.id},this)" title="Preis automatisch laden"><i class="ti ti-refresh"></i></button>`:'<span style="width:20px"></span>'}
+</div>
 ${item.link?`<a class="ilink" href="${esc(item.link)}" target="_blank" rel="noopener" title="Produkt ansehen"><i class="ti ti-external-link"></i></a>`:`<span></span>`}
 <button class="idel" onclick="delItem(${item.id},'${cat.id}')" title="Entfernen" aria-label="Entfernen">×</button>
 </div>`;
@@ -199,13 +362,22 @@ ${item.link?`<a class="ilink" href="${esc(item.link)}" target="_blank" rel="noop
   html+=`<div class="add-wrap">
 <button class="add-btn" onclick="toggleAdd()"><i class="ti ti-plus" style="font-size:15px"></i> Artikel hinzufügen</button>
 <div class="add-form${showAdd?' open':''}" id="addForm">
-  <div class="frow g3">
+  <div class="frow g2">
     <div class="fg"><label class="fl">Produktname</label><input class="fi" id="nn" placeholder="z.B. Wickelkommode"/></div>
-    <div class="fg"><label class="fl">Preis (€)</label><input class="fi" id="np" placeholder="0,00" style="font-family:sans-serif"/></div>
     <div class="fg"><label class="fl">Kategorie</label><select class="fs" id="nc">${D.cats.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}<option value="__new__">+ Neue Kategorie…</option></select></div>
   </div>
+  <div class="frow" style="grid-template-columns:1fr">
+    <div class="fg">
+      <label class="fl">Link — Preis wird automatisch geladen</label>
+      <div class="link-field-wrap">
+        <input class="fi" id="nl" placeholder="https://…" style="font-family:sans-serif" oninput="onLinkInput()" onpaste="setTimeout(onLinkInput,50)"/>
+        <span class="link-fetch-indicator" id="link-ind"></span>
+      </div>
+      <div class="fetch-hint" id="link-hint"></div>
+    </div>
+  </div>
   <div class="frow g2">
-    <div class="fg"><label class="fl">Link (optional)</label><input class="fi" id="nl" placeholder="https://…" style="font-family:sans-serif"/></div>
+    <div class="fg"><label class="fl">Preis (€) — oder wird automatisch ausgefüllt</label><input class="fi" id="np" placeholder="0,00" style="font-family:sans-serif"/></div>
     <div class="fg"><label class="fl">Notiz / Farbe</label><input class="fi" id="nno" placeholder="Farbe, Modell…"/></div>
   </div>
   <div class="factions">
@@ -226,17 +398,9 @@ ${item.link?`<a class="ilink" href="${esc(item.link)}" target="_blank" rel="noop
   document.getElementById('app').innerHTML=html;
 }
 
-function toggleChk(id){
-  const i=allItems().find(x=>x.id===id);
-  if(i){ i.chk=!i.chk; render(); }
-}
-
+function toggleChk(id){ const i=allItems().find(x=>x.id===id); if(i){i.chk=!i.chk;render();} }
 function toggleCat(id){ collapsed[id]=!collapsed[id]; render(); }
-
-function delItem(id,catId){
-  const c=D.cats.find(x=>x.id===catId);
-  if(c){ c.items=c.items.filter(i=>i.id!==id); render(); }
-}
+function delItem(id,catId){ const c=D.cats.find(x=>x.id===catId); if(c){c.items=c.items.filter(i=>i.id!==id);render();} }
 
 function saveField(el){
   const id=+el.dataset.id, field=el.dataset.field;
@@ -256,19 +420,18 @@ function updateStats(){
   const items=allItems(), done=items.filter(i=>i.chk).length, total=items.length;
   const sum=items.filter(i=>i.price>0).reduce((s,i)=>s+i.price,0);
   const pct=total?Math.round(done/total*100):0;
-  const pf=document.getElementById('pfill'); if(pf) pf.style.width=pct+'%';
-  const pr=document.getElementById('pfrac'); if(pr) pr.textContent=`${done} von ${total} besorgt`;
-  const s=id=>document.getElementById(id);
-  if(s('ps-total')) s('ps-total').textContent=total;
-  if(s('ps-done'))  s('ps-done').textContent=done;
-  if(s('ps-open'))  s('ps-open').textContent=total-done;
-  if(s('ps-sum'))   s('ps-sum').textContent=fmtP(sum)||'—';
-  if(s('total-r'))  s('total-r').textContent=fmtP(sum)||'—';
+  const $=id=>document.getElementById(id);
+  const pf=$('pfill'); if(pf) pf.style.width=pct+'%';
+  const pr=$('pfrac'); if(pr) pr.textContent=`${done} von ${total} besorgt`;
+  if($('ps-total')) $('ps-total').textContent=total;
+  if($('ps-done'))  $('ps-done').textContent=done;
+  if($('ps-open'))  $('ps-open').textContent=total-done;
+  if($('ps-sum'))   $('ps-sum').textContent=fmtP(sum)||'—';
+  if($('total-r'))  $('total-r').textContent=fmtP(sum)||'—';
 }
 
 function toggleAdd(){
-  showAdd=!showAdd;
-  render();
+  showAdd=!showAdd; render();
   if(showAdd) setTimeout(()=>document.getElementById('nn')?.focus(),50);
 }
 
@@ -280,25 +443,14 @@ function addItem(){
   const link=(document.getElementById('nl')?.value||'').trim();
   const note=(document.getElementById('nno')?.value||'').trim();
   if(catId==='__new__'){
-    const cn=prompt('Name der neuen Kategorie:');
-    if(!cn) return;
+    const cn=prompt('Name der neuen Kategorie:'); if(!cn) return;
     D.cats.push({id:'c'+nid,name:cn,items:[{id:nid++,name,note,price,link,chk:false}]});
   } else {
     const cat=D.cats.find(c=>c.id===catId);
     if(cat) cat.items.push({id:nid++,name,note,price,link,chk:false});
   }
-  showAdd=false;
-  render();
+  showAdd=false; render();
 }
-
-document.addEventListener('keydown',e=>{
-  if(e.key==='Enter' && document.activeElement?.classList.contains('fi')){
-    const ids=['nn','np','nl','nno'];
-    const cur=ids.indexOf(document.activeElement.id);
-    if(cur>=0 && cur<ids.length-1) document.getElementById(ids[cur+1])?.focus();
-    else if(cur===ids.length-1) addItem();
-  }
-});
 
 render();
 </script>
