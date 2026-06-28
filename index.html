@@ -211,11 +211,17 @@ const DEFAULTS = {nid:50,cats:[
   ]},
 ]};
 
+/* ── Robust token storage: localStorage + Cookie (übersteht iOS-Speicherlöschung) ── */
+function setCookie(name,val,days){ try{ const d=new Date(); d.setTime(d.getTime()+days*864e5); document.cookie=`${name}=${encodeURIComponent(val)};expires=${d.toUTCString()};path=/;SameSite=Strict`; }catch(e){} }
+function getCookie(name){ try{ const m=document.cookie.match(new RegExp('(?:^|; )'+name+'=([^;]*)')); return m?decodeURIComponent(m[1]):''; }catch(e){ return ''; } }
+function loadToken(){ let t=''; try{ t=localStorage.getItem(LSKEY)||''; }catch(e){} if(!t) t=getCookie(LSKEY); if(t){ try{ localStorage.setItem(LSKEY,t); }catch(e){} setCookie(LSKEY,t,400); } return t; }
+function storeToken(t){ try{ localStorage.setItem(LSKEY,t); }catch(e){} setCookie(LSKEY,t,400); }
+
 /* ── STATE ── */
 let D = JSON.parse(JSON.stringify(DEFAULTS));
 let nid = 50;
 let collapsed = {}, showAdd = false, showSetup = false;
-let ghToken = localStorage.getItem(LSKEY) || '';
+let ghToken = loadToken();
 let ghSha = '';
 let saveTimer = null;
 let drag = {itemId:null, fromCatId:null};
@@ -377,7 +383,7 @@ function openSetup(){ showSetup=true; render(); }
 function saveSetup(){
   const t=(document.getElementById('tokenInput')?.value||'').trim();
   if(!t){ toast('Bitte Token eingeben'); return; }
-  ghToken=t; localStorage.setItem(LSKEY,t);
+  ghToken=t; storeToken(t);
   showSetup=false; render(); ghLoad();
 }
 function skipSetup(){ showSetup=false; render(); }
