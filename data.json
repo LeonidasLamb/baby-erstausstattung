@@ -1,5 +1,5 @@
 {
-  "nid": 50,
+  "nid": 51,
   "cats": [
     {
       "id": "mob",
@@ -63,6 +63,20 @@
           "note": "Beistellbett",
           "price": 269,
           "link": "https://kunu-store.de/products/babybeistellbett",
+          "chk": false
+        }
+      ]
+    },
+    {
+      "id": "c50",
+      "name": "Wickelbereich",
+      "items": [
+        {
+          "id": 50,
+          "name": "Pumpkanne",
+          "note": "",
+          "price": 35,
+          "link": "https://www.amazon.de/dp/B073168GYF/ref=cm_sw_r_as_gl_api_gl_i_4G4H6Y39H8T356HF33W3?linkCode=ml1&tag=lanahimoud-21&linkId=966339798e61e930750c802f3509a91a&th=1",
           "chk": false
         }
       ]
