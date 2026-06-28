@@ -64,6 +64,14 @@
           "price": 269,
           "link": "https://kunu-store.de/products/babybeistellbett",
           "chk": false
+        },
+        {
+          "id": 53,
+          "name": "Ergobaby Omni Breeze",
+          "note": "Natural Beige · ergonomisch, Lendenstütze, 0–20 kg",
+          "price": 179.9,
+          "link": "https://www.babyone.de/babytragen/ergobaby/omni-breeze-natural-beige/2000584517206.html",
+          "chk": false
         }
       ]
     },
@@ -99,14 +107,6 @@
           "note": "",
           "price": 369,
           "link": "https://de.momcozy.com/products/momcozy-kleanpal-pro-baby-bottle-washer?_pos=9&_sid=d595e4afe&_ss=r",
-          "chk": false
-        },
-        {
-          "id": 53,
-          "name": "Ergobaby Omni Breeze",
-          "note": "Natural Beige · ergonomisch, Lendenstütze, 0–20 kg",
-          "price": 179.9,
-          "link": "https://www.babyone.de/babytragen/ergobaby/omni-breeze-natural-beige/2000584517206.html",
           "chk": false
         }
       ]
