@@ -1,5 +1,5 @@
 {
-  "nid": 57,
+  "nid": 58,
   "cats": [
     {
       "id": "mob",
@@ -115,6 +115,14 @@
           "note": "",
           "price": 409,
           "link": "https://www.babyone.de/milchpumpen/elvie/elvie-pump-elektrische-doppelpumpe/2000584791408.html",
+          "chk": false
+        },
+        {
+          "id": 57,
+          "name": "Hochstuhl",
+          "note": "",
+          "price": 360,
+          "link": "https://www.cybex-online.com/de/de/p/ho-go-lemo-gold-4in1-2.html?dwvar_ho-go-lemo-gold-4in1-2_color=Stunning%20Black",
           "chk": false
         }
       ]
