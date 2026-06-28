@@ -1,5 +1,5 @@
 {
-  "nid": 54,
+  "nid": 55,
   "cats": [
     {
       "id": "mob",
@@ -19,6 +19,14 @@
           "note": "Cosmopolitan",
           "price": 269,
           "link": "https://www.babyone.de/tragewannen/nuna/demi-next-wanne-cosmopolitan/2000585610487.html",
+          "chk": false
+        },
+        {
+          "id": 54,
+          "name": "Ergobaby Trage",
+          "note": "Cloud",
+          "price": 219,
+          "link": "https://www.babyone.de/babytragen/fullbuckle/ergobaby/omni-deluxe-mesh-cloud-white/2000589130202.html",
           "chk": false
         }
       ]
