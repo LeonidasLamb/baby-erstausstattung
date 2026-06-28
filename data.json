@@ -1,0 +1,79 @@
+{
+  "nid": 50,
+  "cats": [
+    {
+      "id": "mob",
+      "name": "Mobilität & Transport",
+      "items": [
+        {
+          "id": 1,
+          "name": "Nuna DEMI next Kinderwagen",
+          "note": "Cosmopolitan",
+          "price": 1499,
+          "link": "https://www.babyone.de/kombi-kinderwagen/nuna/demi-next-cosmopolitan/2000585610388.html",
+          "chk": false
+        },
+        {
+          "id": 2,
+          "name": "Nuna DEMI next Sportsitz",
+          "note": "Cosmopolitan",
+          "price": 299,
+          "link": "https://www.babyone.de/kombi-kinderwagen/nuna/demi-next-cosmopolitan/2000585610388.html",
+          "chk": false
+        },
+        {
+          "id": 3,
+          "name": "Nuna DEMI next Kinderwanne",
+          "note": "Cosmopolitan",
+          "price": 249,
+          "link": "https://www.babyone.de/tragewannen/nuna/demi-next-wanne-cosmopolitan/2000585610487.html",
+          "chk": false
+        }
+      ]
+    },
+    {
+      "id": "auto",
+      "name": "Sicherheit & Auto",
+      "items": [
+        {
+          "id": 4,
+          "name": "Nuna PIPA next Babyschale",
+          "note": "Chestnut",
+          "price": 429,
+          "link": "https://www.babyone.de/babyschalen/nuna/pipa-next-chestnut/2000588681507.html",
+          "chk": false
+        },
+        {
+          "id": 5,
+          "name": "Nuna BASE next",
+          "note": "Isofix-Base",
+          "price": 299,
+          "link": "https://www.babyone.de/kindersitz-basis-stationen/nuna/base-next/2000580370706.html",
+          "chk": false
+        }
+      ]
+    },
+    {
+      "id": "sleep",
+      "name": "Schlafen & Entspannen",
+      "items": [
+        {
+          "id": 6,
+          "name": "Nuna LEAF grow Wippe",
+          "note": "Cloud",
+          "price": 369,
+          "link": "https://www.babyone.de/wippen/nuna/wippe-leaf-grow-cloud/2000586955716.html",
+          "chk": false
+        },
+        {
+          "id": 7,
+          "name": "Kunu All-in-One Babybett",
+          "note": "Beistellbett",
+          "price": 0,
+          "link": "https://kunu-store.de/products/babybeistellbett",
+          "chk": false
+        }
+      ]
+    }
+  ]
+}
