@@ -2,8 +2,16 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <title>Baby Erstausstattung</title>
+<link rel="manifest" href="manifest.json"/>
+<meta name="theme-color" content="#F7F1E8"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<meta name="apple-mobile-web-app-title" content="Baby Liste"/>
+<link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+<link rel="icon" type="image/png" href="icon-192.png"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -16,7 +24,8 @@
 }
 html,body{background:var(--c0);min-height:100vh;overscroll-behavior:none}
 body{font-family:'Georgia',serif;color:var(--ink)}
-.page{max-width:720px;margin:0 auto;padding-bottom:6rem}
+.page{max-width:720px;margin:0 auto;padding-bottom:calc(4rem + env(safe-area-inset-bottom))}
+.hdr{padding-top:calc(2rem + env(safe-area-inset-top))}
 
 /* ── HEADER ── */
 .hdr{padding:2rem 1.5rem 1.5rem;border-bottom:1px solid var(--line)}
@@ -160,7 +169,7 @@ body{font-family:'Georgia',serif;color:var(--ink)}
 
 /* ── MOBILE ── */
 @media(max-width:480px){
-  .hdr{padding:1.25rem 1rem 1.1rem}
+  .hdr{padding:calc(1.25rem + env(safe-area-inset-top)) 1rem 1.1rem}
   .hdr h1{font-size:20px}
   .progress-wrap{padding:.85rem 1rem}
   .pills{padding:.6rem 1rem}
@@ -517,6 +526,19 @@ if(!ghToken){
 }
 render();
 if(ghToken) ghLoad();
+
+/* ── PWA service worker ── */
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{ navigator.serviceWorker.register('sw.js').catch(()=>{}); });
+}
+/* Keep devices in sync: flush pending saves when leaving, reload when returning */
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden){
+    if(saveTimer){ clearTimeout(saveTimer); ghSave(); }
+  } else if(ghToken){
+    ghLoad();
+  }
+});
 </script>
 </body>
 </html>
