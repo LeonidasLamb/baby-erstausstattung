@@ -482,26 +482,21 @@ ${item.link?`<a class="ilink" href="${esc(item.link)}" target="_blank" rel="noop
 </div>
 <div class="footer">Baby Erstausstattung · ${new Date().getFullYear()}</div>`;
 
-  document.getElementById('app').innerHTML=html;
-
-  if(showSetup) renderSetup();
-  setSyncState(syncState);
-}
-
-function renderSetup(){
-  const bg=document.createElement('div');
-  bg.className='modal-bg';
-  bg.innerHTML=`<div class="modal">
+  if(showSetup){
+    html+=`<div class="modal-bg" id="setupModal"><div class="modal">
   <h2>Sync einrichten</h2>
   <p>Damit die Liste auf allen Geräten synchron ist, brauchen wir einen GitHub Personal Access Token.<br><br>
   <a href="https://github.com/settings/tokens/new?scopes=repo&description=BabyListe" target="_blank" rel="noopener">→ Token hier erstellen</a> (Scope: <code>repo</code>), dann hier einfügen:</p>
   <input class="fi" id="tokenInput" type="password" placeholder="ghp_..." value="${esc(ghToken)}"/>
   <div class="modal-actions">
     <button class="fbtn fbtn-s" onclick="skipSetup()">Später</button>
-    <button class="fbtn fbtn-p" onclick="saveSetup()">Speichern & Verbinden</button>
+    <button class="fbtn fbtn-p" onclick="saveSetup()">Speichern &amp; Verbinden</button>
   </div>
-</div>`;
-  document.body.appendChild(bg);
+</div></div>`;
+  }
+
+  document.getElementById('app').innerHTML=html;
+  setSyncState(syncState);
 }
 
 function updateStats(){
