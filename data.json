@@ -20,6 +20,14 @@
           "price": 269,
           "link": "https://www.babyone.de/tragewannen/nuna/demi-next-wanne-cosmopolitan/2000585610487.html",
           "chk": false
+        },
+        {
+          "id": 53,
+          "name": "Ergobaby Omni Breeze",
+          "note": "Natural Beige · ergonomisch, Lendenstütze, 0–20 kg",
+          "price": 179.9,
+          "link": "https://www.babyone.de/babytragen/ergobaby/omni-breeze-natural-beige/2000584517206.html",
+          "chk": false
         }
       ]
     },
@@ -63,14 +71,6 @@
           "note": "Beistellbett",
           "price": 269,
           "link": "https://kunu-store.de/products/babybeistellbett",
-          "chk": false
-        },
-        {
-          "id": 53,
-          "name": "Ergobaby Omni Breeze",
-          "note": "Natural Beige · ergonomisch, Lendenstütze, 0–20 kg",
-          "price": 179.9,
-          "link": "https://www.babyone.de/babytragen/ergobaby/omni-breeze-natural-beige/2000584517206.html",
           "chk": false
         }
       ]
