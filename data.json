@@ -1,5 +1,5 @@
 {
-  "nid": 61,
+  "nid": 62,
   "cats": [
     {
       "id": "mob",
@@ -27,6 +27,14 @@
           "note": "Cloud",
           "price": 219,
           "link": "https://www.babyone.de/babytragen/fullbuckle/ergobaby/omni-deluxe-mesh-cloud-white/2000589130202.html",
+          "chk": false
+        },
+        {
+          "id": 61,
+          "name": "Cyber S Babyschale",
+          "note": "Amber Brown",
+          "price": 290,
+          "link": "https://www.cybex-online.com/de/de/p/cs-pl-cloud-s.html?dwvar_cs-pl-cloud-s_color=Misty%20Grey%20(Style)",
           "chk": false
         }
       ]
