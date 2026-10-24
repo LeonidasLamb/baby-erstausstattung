@@ -1,5 +1,5 @@
 {
-  "nid": 62,
+  "nid": 63,
   "cats": [
     {
       "id": "mob",
@@ -42,7 +42,16 @@
     {
       "id": "auto",
       "name": "Sicherheit & Auto",
-      "items": []
+      "items": [
+        {
+          "id": 62,
+          "name": "Base S Cybex",
+          "note": "",
+          "price": 250,
+          "link": "https://www.cybex-online.com/de/de/p/cs-pl-base-s.html",
+          "chk": false
+        }
+      ]
     },
     {
       "id": "sleep",
