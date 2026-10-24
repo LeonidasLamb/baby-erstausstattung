@@ -36,14 +36,6 @@
       "name": "Sicherheit & Auto",
       "items": [
         {
-          "id": 4,
-          "name": "Cyber S Cloud Babyschale",
-          "note": "Amber Brown",
-          "price": 289,
-          "link": "https://www.babyone.de/babyschalen/nuna/pipa-next-chestnut/2000588681507.html",
-          "chk": false
-        },
-        {
           "id": 5,
           "name": "Nuna BASE next",
           "note": "Isofix-Base",
