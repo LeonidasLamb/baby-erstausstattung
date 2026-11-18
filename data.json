@@ -1,5 +1,5 @@
 {
-  "nid": 63,
+  "nid": 64,
   "cats": [
     {
       "id": "mob",
@@ -131,6 +131,14 @@
           "note": "",
           "price": 128,
           "link": "https://www.amazon.de/dp/B0FF93J8NL?linkCode=xm2&smid=AZ6JQZ3Z9GGV9&creative=22662&creativeASIN=B0FF93J8NL&tag=geizhals10-21&language=de_DE&ascsubtag=mp_de&th=1",
+          "chk": false
+        },
+        {
+          "id": 63,
+          "name": "Hochstuhl",
+          "note": "",
+          "price": 19,
+          "link": "https://www.ikea.com/de/de/p/antilop-kinderhochstuhl-mit-tablett-weiss-weiss-s79597515/?utm_source=google&utm_medium=cpc&utm_campaign=DE_LC_A3_BEH_0_AO_0_de_PMax-Shopping_Brand_HFB09-ChildrensIKEA_0&utm_id=system:GOOGLE.campaignid:22499319836.adgroupid:.creative:.keyword:.matchtype:.placement:&gclsrc=aw.ds&gad_source=1&gad_campaignid=22492786071&gbraid=0AAAAAD0RnaE7VSy3aL73WUzT0BWYfgv69&gclid=Cj0KCQiAtvXXBhC2ARIsAJc8SUTevHob7B9lSls3d89WIMaCQjqAH6HY2fdgWwnRLau_O8WWD1ZLAdwaAgBtEALw_wcB",
           "chk": false
         }
       ]
